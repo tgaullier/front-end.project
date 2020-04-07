@@ -67,12 +67,13 @@ You will have your own account on our website, so you can connect and save your 
   <li>For the 14/04:</li>
   <ul>
     <li>Connection to the Steam API</li>
+    <li>Connection to the Anime API</li>
     <li>Login page of our website</li>
   </ul>
   <br> 
   <li>For the 16/04:</li>
   <ul>
-    <li>A search in all the animes</li>
+    <li>A search in all the Animes</li>
     <li>Login page of our website</li>
   </ul>
   <br> 
