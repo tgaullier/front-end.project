@@ -2,7 +2,7 @@
 <br>
 <hr/>
 <br> 
-**GOALS:**<br>
+<strong>GOALS:</strong><br>
 This Web Site provides a new way to track your anime and their specific video games.<br>
 In our website you will be able to add your favorite animes to your list and track their completition if you have the game related to.<br>
 For example: +Add Naruto Shippuden (ANIME) +Add Naruto Storm 4 (GAME).<br>
@@ -13,7 +13,7 @@ You will have your own account on our website, so you can connect and save your 
 <br>
 <hr/>
 <br> 
-**FUNCTIONALITIES:**<br>
+<strong>FUNCTIONALITIES:<strong><br>
 >MUST HAVE:
 <ul>
   <li>Connection to an Anime API:</li>
@@ -61,7 +61,7 @@ You will have your own account on our website, so you can connect and save your 
 <br>
 <hr/>
 <br> 
-**CALENDAR:**<br>
+<strong>CALENDAR:<strong><br>
 <p>This calendar represents the latest date on which we commit the code</p>
 <ul>
   <li>For the 14/04:</li>
