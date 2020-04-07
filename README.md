@@ -13,7 +13,7 @@ You will have your own account on our website, so you can connect and save your 
 <br>
 <hr/>
 <br> 
-<strong>FUNCTIONALITIES:<strong><br>
+<strong>FUNCTIONALITIES:</strong><br>
 >MUST HAVE:
 <ul>
   <li>Connection to an Anime API:</li>
@@ -61,7 +61,7 @@ You will have your own account on our website, so you can connect and save your 
 <br>
 <hr/>
 <br> 
-<strong>CALENDAR:<strong><br>
+<strong>CALENDAR:</strong><br>
 <p>This calendar represents the latest date on which we commit the code</p>
 <ul>
   <li>For the 14/04:</li>
