@@ -14,7 +14,7 @@ You will have your own account on our website, so you can connect and save your 
 <hr/>
 <br> 
 **FUNCTIONALITIES:**<br>
-<blockquote>MUST HAVE:</blockquote>
+>MUST HAVE:
 <ul>
   <li>Connection to an Anime API:</li>
   <ul>
@@ -28,7 +28,7 @@ You will have your own account on our website, so you can connect and save your 
   </ul>
 </ul>
 <br> 
-<blockquote>SHOULD HAVE:</blockquote>
+>SHOULD HAVE:
 <ul>
   <li>Connection to an Anime API:</li>
   <ul>
@@ -43,7 +43,7 @@ You will have your own account on our website, so you can connect and save your 
    </ul>
 </ul>
 <br> 
-<blockquote>NICE TO HAVE:</blockquote>
+>NICE TO HAVE:
 <ul>
   <li>Connection to the Playstation Network API:</li>
   <ul>
