@@ -140,6 +140,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -229,16 +230,17 @@ export default {
       this.itemsPerPage = number
     },
     buttonClicked (name) {
-      var request = new XMLHttpRequest()
-      request.open('GET', 'https://private-anon-0d5c5359b8-jikan.apiary-proxy.com/v3/search/anime?q=Naruto&page=1&type=anime')
-      request.onreadystatechange = function () {
-        console.log('Status:', this.status)
-        console.log('Headers:', this.getAllResponseHeaders())
-        console.log('Body:', this.responseText)
-        this.temp = this.responseText
-        request.send()
-      }
-      return console.log(this.temp)
+      axios.get('https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1', {
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost:8080'
+        }
+      })
+        .then(response => {
+          this.posts = response.data
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     }
   }
 }
