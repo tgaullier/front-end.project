@@ -26,6 +26,7 @@
           width="70"
         />
         </div>
+          <v-btn text @click="getSearchAnime()">Search</v-btn>
           <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
@@ -140,10 +141,13 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { apiV1URL } from '@/utils/apiUrl.js'
+import _mangas from 'jikan-node'
 export default {
   data () {
     return {
+      url: `${apiV1URL}/findanime`,
+      anime: [],
       itemsPerPageArray: [4, 8, 12],
       search: '',
       filter: {},
@@ -159,54 +163,54 @@ export default {
       ],
       items: [
         {
-          name: 'Frozen Yogurt',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 6.0
+          name: 'Naruto',
+          image: 'https://fr.web.img2.acsta.net/pictures/19/08/02/15/12/4423178.jpg',
+          resume: 'L\'histoire commence pendant l\'adolescence de Naruto, vers ses douze ans. Orphelin cancre et grand farceur, il fait toutes les bêtises possibles pour se faire remarquer.'
         },
         {
-          name: 'Ice cream sandwich',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 9.0
+          name: 'Kingdom',
+          image: 'https://media.senscritique.com/media/000005585139/160/Kingdom.jpg',
+          resume: 'En Chine, il y a des centaines et des centaines d’années, le récit suit le jeune Shin dans son chemin vers l\'accomplissement de son rêve : devenir un Grand Général. Dans cette Chine ancestrale, Shin est originaire de l\'État de Qin en proie à de nombreux soubresauts aussi bien à l\'intérieur du royaume, mais aussi à l\'extérieur.'
         },
         {
-          name: 'Eclair',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 16.0
+          name: 'Full Metal Alchemist',
+          image: 'http://fr.web.img4.acsta.net/c_216_288/pictures/19/07/29/15/50/2364027.jpg',
+          resume: 'Dans le pays d\'Amestris, pays où l\'Alchimie est élevée au rang de science universelle, deux frères, Edward et Alphonse Elric parcourent le monde à la recherche de la légendaire pierre philosophale dans le but de retrouver leurs corps perdus.'
         },
         {
-          name: 'Cupcake',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 3.7
+          name: 'Shingeki no Kyojin',
+          image: 'https://cdn.myanimelist.net/images/anime/10/47347.jpg',
+          resume: 'Plus de cent ans avant le début de l’histoire, des créatures géantes humanoïdes nommées Titans sont subitement apparues et ont presque anéanti l’humanité. Ces créatures géantes font habituellement entre trois et quinze mètres de haut, avec quelques exceptions comme le Titan colossal qui en mesure soixante1.'
         },
         {
-          name: 'Gingerbread',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 16.0
+          name: 'Parasyte',
+          image: 'https://media.senscritique.com/media/000009634525/160/Parasyte.jpg',
+          resume: 'Une nuit, des sphères de la taille de balles de tennis, contenant des créatures à l\'apparence de serpents, tombent en nombre inconnu partout dans le monde. Ils sont programmés pour prendre la place des cerveaux humains.'
         },
         {
-          name: 'Jelly bean',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 0.0
+          name: 'Samouraï Champloo',
+          image: 'https://manga.tokyo/wp-content/uploads/2019/09/5d8b8000486f5-200x300.jpg',
+          resume: 'L histoire se déroule dans une version fictive de l ère Edo au Japon.'
         },
         {
-          name: 'Lollipop',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 0.2
+          name: 'My hero academia',
+          image: 'https://www.cgrcinemas.fr/tours/evenement/MHA.jpg',
+          resume: 'Dans un monde où 80 % de la population mondiale possède des super-pouvoirs, ici nommés "Alters", n\'importe qui peut devenir un héros ou, s\'il le souhaite, un criminel.'
         },
         {
-          name: 'Honeycomb',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 3.2
+          name: 'The Seven Deadly Sins',
+          image: 'https://images-na.ssl-images-amazon.com/images/I/A1kyqwzPP1L.jpg',
+          resume: 'Liones, royaume de Britannia. Le Grand Maître des Chevaliers Sacrés Zaratras a été sauvagement assassiné, et les fautifs seraient un ordre de chevaliers légendaires au nombre de sept au service du roi qui voulaient renverser le trône.'
         },
         {
-          name: 'Donut',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 25.0
+          name: 'Bleach',
+          image: 'https://i.pinimg.com/originals/ce/9c/93/ce9c938d04a67fec228835f4e91ee3a9.jpg',
+          resume: 'Le récit commence en 2001 au Japon dans la ville fictive de Karakura. Ichigo Kurosaki, lycéen de 15 ans, arrive à voir, entendre et toucher les âmes des morts depuis qu\'il est tout petit. '
         },
         {
-          name: 'KitKat',
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          resume: 26.0
+          name: 'One Piece',
+          image: 'https://www.raprnb.com/wp-content/uploads/2020/04/7799989264_one-piece-arrive-sur-netflix-en-live-action.jpg',
+          resume: 'L\'histoire de One Piece se déroule dans un monde fictif dominé par les océans, où certains pirates aspirent à une ère de liberté et d\'aventure connue comme "l\'âge d\'or de la piraterie". '
         }
       ]
     }
@@ -230,17 +234,13 @@ export default {
       this.itemsPerPage = number
     },
     buttonClicked (name) {
-      axios.get('https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1', {
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:8080'
-        }
-      })
-        .then(response => {
-          this.posts = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
+      return console.log(name)
+    },
+    getSearchAnime () {
+      const mangas = new _mangas()
+      mangas.search('anime', 'naruto')
+        .then(info => console.log(info))
+        .catch(err => console.log(err))
     }
   }
 }
