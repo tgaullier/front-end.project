@@ -12,3 +12,5 @@ Cependant on peut vérifier que la connexion à l'api fonctionne.En effet les re
 en entrant les commandes:
 cd api-mangas
 yarn dev
+
+Le redme descriptif du projet se trouve dans api-mangas-vue > README.md
