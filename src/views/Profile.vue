@@ -93,6 +93,7 @@
 <script>
 export default {
   data () {
+    // eslint-disable-next-line no-return-assign
     return {
       profile: {
         image: 'https://cdn.vuetifyjs.com/images/profiles/marcus.jpg',

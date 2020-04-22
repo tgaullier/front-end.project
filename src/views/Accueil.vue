@@ -140,10 +140,10 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
+      url: 'http://localhost:8081',
       itemsPerPageArray: [4, 8, 12],
       search: '',
       filter: {},
@@ -230,17 +230,8 @@ export default {
       this.itemsPerPage = number
     },
     buttonClicked (name) {
-      axios.get('https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1', {
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:8080'
-        }
-      })
-        .then(response => {
-          this.posts = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
+      const response = this.axios.get(this.url + 'https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1')
+      console.log('response is:', response)
     }
   }
 }
